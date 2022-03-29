@@ -41,4 +41,19 @@ public class CountryRepositoryTest {
         assertEquals(combienDePaysDansLeJeuDeTest, nombre, "On doit trouver 4 pays" );
     }
 
+    @Test
+    void onVerifieLaPopulation() {
+        log.info("On vérifie que la population du pays est correcte.");
+        int populationFrance = countryDAO.calculPopulationCountry(1);
+        int nbPopulation = 12;
+        assertEquals(populationFrance, nbPopulation, "On doit trouver 12 pour la population de la France.");
+    }
+
+    @Test
+    void onVerifieLaListeDesPays() {
+        log.info("On vérifie que la liste des pays correcte.");
+        int list = countryDAO.listCountry().size();
+        long nbPays = countryDAO.count(); 
+        assertEquals(list, nbPays, "Le nombre de pays dans la liste doit être 3.");
+    }
 }

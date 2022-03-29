@@ -1,4 +1,7 @@
 package monprojet.entity;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 import org.hibernate.annotations.Proxy;
@@ -22,4 +25,18 @@ public class Country {
     @Column(unique=true)
     @NonNull
     private String name;
+
+    @OneToMany(mappedBy="country")
+    // Essayer sans "mappedBy" pour voir le schémma relationnel généré
+    // @OneToMany
+    //private List<City> cities = new ArrayList<>();
+    
+    // Le programme principal ne marche plus ! pourquoi ?
+    // La méthode toString() de Country (générée par Lombok) affiche les villes, qui affichent leur pays, qui affiche leurs villes...
+    // On peut contrôler le toString() généré par Lombok
+
+    // Lombok https://www.projectlombok.org/features/ToString
+    @ToString.Exclude // On ne veut pas inclure la liste des villes dans le toString
+    // Sinon récursivité infinie    
+    private List<City> cities = new ArrayList<>();
 }
