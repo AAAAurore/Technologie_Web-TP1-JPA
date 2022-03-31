@@ -24,8 +24,6 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
         nativeQuery = true)
     public int calculPopulationCountry(int idCountry);
 
-    public static final int population = 0;
-
     public interface NamePopulationCountry{
         String getName();
         int getPopulation();
